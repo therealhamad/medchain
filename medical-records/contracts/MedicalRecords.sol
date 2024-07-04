@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 contract MedicalRecords {
     struct Record {
-        string data; // The medical data associated with the record
+        string data; // The medical data associated with the records
         address createdBy; // The address of the user who created the record
         uint256 timestamp; // The timestamp when the record was created
         string prescription; // The prescription associated with the record
