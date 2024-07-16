@@ -2,7 +2,7 @@
 ## Overview 
 MedChain is a revolutionary platform leveraging blockchain technology to manage and secure medical records. It empowers patients to control their medical data, enabling them to create, edit, and store records on-chain while allowing doctors access through a secure and transparent system.
 
-##Features
+## Features
 - Decentralized Storage: Medical records are stored on a blockchain, ensuring data integrity and availability.
 - Patient Control: Patients have full control over their medical data, deciding who can access their records.
 - Secure Access: Doctors can access patient records through smart contracts, ensuring only authorized access.
