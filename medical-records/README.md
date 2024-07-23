@@ -24,24 +24,22 @@ MedChain uses smart contracts written in Solidity to manage medical records. The
 - Library: Ethers.js
 - API Service: Alchemy
 
-##Usage with Polygon Cardano zkEVM
+## Usage with Polygon Cardano zkEVM
 To leverage the Polygon Cardano zkEVM in MedChain, follow these steps:
 
-##Prerequisites
+## Prerequisites
 Install Node.js and npm.
-Set up Hardhat and other dependencies as per the initial setup.
-Setting Up Polygon Cardano zkEVM
+- Set up Hardhat and other dependencies as per the initial setup.
+- Setting Up Polygon Cardano zkEVM
 1. Install Polygon Cardano zkEVM Plugin:
 
 ```sh
-Copy code
 npm install @polygon/cardano-zkevm
 ```
 2. Configure Hardhat for Polygon Cardano zkEVM:
 Update your hardhat.config.js to include the network configuration for Polygon Cardano zkEVM.
 
 ```javascript
-Copy code
 require("@nomiclabs/hardhat-waffle");
 require("@polygon/cardano-zkevm");
 
@@ -68,14 +66,12 @@ module.exports = {
 Ensure your deployment scripts target the polygonCardano network.
 
 ```sh
-Copy code
 npx hardhat run scripts/deploy.js --network polygonCardano
 ```
 4. Update Frontend to Interact with Polygon Cardano zkEVM:
 Modify your Ethers.js setup to connect to the Polygon Cardano zkEVM network.
 
 ```javascript
-Copy code
 const { ethers } = require("ethers");
 const provider = new ethers.providers.JsonRpcProvider("https://polygon-cardano-zkevm.alchemyapi.io/v2/YOUR_ALCHEMY_API_KEY");
 ```
