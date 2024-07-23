@@ -28,9 +28,9 @@ MedChain uses smart contracts written in Solidity to manage medical records. The
 To leverage the Polygon Cardano zkEVM in MedChain, follow these steps:
 
 ## Prerequisites
-Install Node.js and npm.
+- Install Node.js and npm.
 - Set up Hardhat and other dependencies as per the initial setup.
-- Setting Up Polygon Cardano zkEVM
+## Setting Up Polygon Cardano zkEVM
 1. Install Polygon Cardano zkEVM Plugin:
 
 ```sh
