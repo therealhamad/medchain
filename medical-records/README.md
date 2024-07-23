@@ -1,4 +1,4 @@
-# MedChain: A Blockchain-Based Medical Records System#
+# MedChain: A Blockchain-Based Medical Records System
 ## Overview 
 MedChain is a revolutionary platform leveraging blockchain technology to manage and secure medical records. It empowers patients to control their medical data, enabling them to create, edit, and store records on-chain while allowing doctors access through a secure and transparent system.
 
@@ -23,6 +23,64 @@ MedChain uses smart contracts written in Solidity to manage medical records. The
 - Programming Language: Solidity
 - Library: Ethers.js
 - API Service: Alchemy
+
+##Usage with Polygon Cardano zkEVM
+To leverage the Polygon Cardano zkEVM in MedChain, follow these steps:
+
+##Prerequisites
+Install Node.js and npm.
+Set up Hardhat and other dependencies as per the initial setup.
+Setting Up Polygon Cardano zkEVM
+1. Install Polygon Cardano zkEVM Plugin:
+
+```sh
+Copy code
+npm install @polygon/cardano-zkevm
+```
+2. Configure Hardhat for Polygon Cardano zkEVM:
+Update your hardhat.config.js to include the network configuration for Polygon Cardano zkEVM.
+
+```javascript
+Copy code
+require("@nomiclabs/hardhat-waffle");
+require("@polygon/cardano-zkevm");
+
+module.exports = {
+  defaultNetwork: "polygonCardano",
+  networks: {
+    polygonCardano: {
+      url: "https://polygon-cardano-zkevm.alchemyapi.io/v2/YOUR_ALCHEMY_API_KEY",
+      accounts: ["0xYOUR_PRIVATE_KEY"]
+    }
+  },
+  solidity: {
+    version: "0.8.4",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  }
+};
+```
+3. Deploy Smart Contracts on Polygon Cardano zkEVM:
+Ensure your deployment scripts target the polygonCardano network.
+
+```sh
+Copy code
+npx hardhat run scripts/deploy.js --network polygonCardano
+```
+4. Update Frontend to Interact with Polygon Cardano zkEVM:
+Modify your Ethers.js setup to connect to the Polygon Cardano zkEVM network.
+
+```javascript
+Copy code
+const { ethers } = require("ethers");
+const provider = new ethers.providers.JsonRpcProvider("https://polygon-cardano-zkevm.alchemyapi.io/v2/YOUR_ALCHEMY_API_KEY");
+```
+
+By integrating Polygon Cardano zkEVM, MedChain can benefit from enhanced scalability, lower transaction costs, and improved privacy for medical record management.
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
 
