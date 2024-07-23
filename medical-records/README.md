@@ -1,6 +1,6 @@
 # MedChain: A Blockchain-Based Medical Records System
 ## Overview 
-MedChain is a revolutionary platform leveraging blockchain technology to manage and secure medical records. It empowers patients to control their medical data, enabling them to create, edit, and store records on-chain while allowing doctors access through a secure and transparent system.
+MedChain is a revolutionary platform leveraging blockchain technology to manage and secure medical records. It empowers patients to control their medical data, enabling them to create, edit, and store records on-chain while allowing doctors access through a secure and transparent system. By integrating with Polygon Cardano zkEVM, MedChain benefits from enhanced scalability, reduced transaction costs, and improved privacy.
 
 ## Features
 - Decentralized Storage: Medical records are stored on a blockchain, ensuring data integrity and availability.
@@ -8,6 +8,8 @@ MedChain is a revolutionary platform leveraging blockchain technology to manage 
 - Secure Access: Doctors can access patient records through smart contracts, ensuring only authorized access.
 - Immutable Records: Once added, records cannot be altered or deleted, providing a reliable history.
 - Transparency: All access and modifications are logged on the blockchain, providing a transparent audit trail.
+- Scalability and Efficiency: Integration with Polygon Cardano zkEVM enhances scalability and reduces transaction costs, ensuring the system can handle a large volume of records efficiently.
+- Privacy and Security: Polygon Cardano zkEVM improves privacy by utilizing zero-knowledge proofs, ensuring sensitive medical data remains secure and confidential.
 
 ## Technical Details
 
