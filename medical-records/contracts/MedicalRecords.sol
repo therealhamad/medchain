@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-pragma solidity ^0.8.19;
-
 contract MedicalRecords {
     struct Record {
         string data; // The medical data associated with the records
