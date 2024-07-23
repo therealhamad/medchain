@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+pragma solidity ^0.8.19;
+
 contract MedicalRecords {
     struct Record {
         string data; // The medical data associated with the records
+        string ipfsHash; // Store the IPFS hash here
         address createdBy; // The address of the user who created the record
         uint256 timestamp; // The timestamp when the record was created
         string prescription; // The prescription associated with the record
@@ -23,6 +26,9 @@ contract MedicalRecords {
     // Event to log record deletion
     event RecordDeleted(address patient, uint256 index);
 
+    // Event to log record update
+    event RecordUpdated(address patient, string ipfsHash, address updatedBy, uint256 timestamp);
+
     // Modifier to check if the sender is the patient or an authorized doctor
     modifier isAuthorized(address _patient) {
         require(
@@ -36,7 +42,7 @@ contract MedicalRecords {
     function createRecord(string memory _data) public {
         Patient storage patient = patients[msg.sender];
         patient.id = msg.sender;
-        patient.records.push(Record(_data, msg.sender, block.timestamp, ""));
+        patient.records.push(Record(_data, "", msg.sender, block.timestamp, ""));
 
         emit RecordCreated(msg.sender, _data, msg.sender, block.timestamp);
     }
@@ -99,12 +105,13 @@ contract MedicalRecords {
     }
 
     // Function to update a patient's record
-    function updateRecord(address _patient, uint _index, string memory _newData) public isAuthorized(_patient) {
+    function updateRecord(address _patient, uint _index, string memory _newIpfsHash) public isAuthorized(_patient) {
         require(_index < patients[_patient].records.length, "Record index out of bounds");
         Record storage recordToUpdate = patients[_patient].records[_index];
-        recordToUpdate.data = _newData;
+        recordToUpdate.ipfsHash = _newIpfsHash;
         recordToUpdate.timestamp = block.timestamp; // Update timestamp to current
-        emit RecordCreated(_patient, _newData, msg.sender, block.timestamp); // Log the update as a new record for audit purposes
+
+        emit RecordUpdated(_patient, _newIpfsHash, msg.sender, block.timestamp);
     }
 
 
@@ -120,4 +127,28 @@ contract MedicalRecords {
         patients[_patient].records[_recordIndex].prescription = _prescription;
         emit PrescriptionUploaded(_patient, _recordIndex, _prescription); // Assuming there's an event for uploading a prescription
     }
+    // Function to update the encryption key for a patient's records
+    // This is a simplified example and should be adapted for specific encryption approach
+    function updateEncryptionKey(address _patient, string memory _newKey) public isAuthorized(_patient) {
+        // Logic to securely update the encryption key for the patient
+        emit EncryptionKeyUpdated(_patient, _newKey);
+    }
+
+    // Event to log encryption key updates
+    event EncryptionKeyUpdated(address patient, string newKey);
+    // Function to authorize a new doctor for a patient
+    function authorizeDoctor(address _patient, address _doctor) public isAuthorized(_patient) {
+        patients[_patient].authorizedDoctors[_doctor] = true;
+        emit DoctorAuthorized(_patient, _doctor);
+    }
+
+    // Function to revoke a doctor's authorization
+    function revokeDoctorAuthorization(address _patient, address _doctor) public isAuthorized(_patient) {
+        patients[_patient].authorizedDoctors[_doctor] = false;
+        emit DoctorAuthorizationRevoked(_patient, _doctor);
+    }
+
+    // Events for authorization changes
+    event DoctorAuthorized(address patient, address doctor);
+    event DoctorAuthorizationRevoked(address patient, address doctor);
 }
